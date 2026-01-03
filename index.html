@@ -23,13 +23,13 @@
                 <span class="info-label"><i class="fas fa-lock" style="margin-right: 8px;"></i>Password</span>
                 <span class="info-value" id="passwordDisplay">password</span>
             </div>
-            <div class="info-item">
+            <!--<div class="info-item">
                 <span class="info-label"><i class="fas fa-signal" style="margin-right: 8px;"></i>Status</span>
                 <span class="status-indicator" id="statusIndicator">
                     <span class="status-dot"></span>
                     <span class="status-text">Checking...</span>
                 </span>
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -391,27 +391,32 @@
             const statusDot = statusIndicator.querySelector('.status-dot');
             const statusText = statusIndicator.querySelector('.status-text');
             
-            // Try to connect to the server using a simple fetch with timeout
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3000);
-            
-            fetch(`http://${SERVER_IP.split(':')[0]}:${SERVER_IP.split(':')[1] || 80}`, {
-                method: 'HEAD',
-                mode: 'no-cors',
-                signal: controller.signal
-            })
-            .then(() => {
-                clearTimeout(timeoutId);
-                statusDot.classList.remove('offline');
-                statusDot.classList.add('online');
-                statusText.textContent = 'Online';
-            })
-            .catch(() => {
-                clearTimeout(timeoutId);
-                statusDot.classList.remove('online');
+            // Use a simple image request to check server availability
+            // This is more reliable for checking if a server is online
+            const img = new Image();
+            const timeout = setTimeout(() => {
                 statusDot.classList.add('offline');
+                statusDot.classList.remove('online');
                 statusText.textContent = 'Offline';
-            });
+            }, 5000);
+            
+            img.onload = function() {
+                clearTimeout(timeout);
+                statusDot.classList.add('online');
+                statusDot.classList.remove('offline');
+                statusText.textContent = 'Online';
+            };
+            
+            img.onerror = function() {
+                clearTimeout(timeout);
+                statusDot.classList.add('offline');
+                statusDot.classList.remove('online');
+                statusText.textContent = 'Offline';
+            };
+            
+            // Try to load a favicon from the server
+            // Add a timestamp to bypass caching
+            img.src = `http://${SERVER_IP.split(':')[0]}:${SERVER_IP.split(':')[1] || 80}/favicon.ico?t=${Date.now()}`;
         }
         
         // Check status on page load and every 30 seconds
