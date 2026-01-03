@@ -1,384 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Server Site</title>
-        <meta name="description" content="Newt's game server hub.">
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="./css/main.styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dusk Server - Vintage Story</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header-section">
+        <h1>Dusk Server</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Vintage Story Community Server</p>
+        
+        <div class="server-info-card">
+            <div class="info-item">
+                <span class="info-label">Server IP</span>
+                <span class="info-value" id="ipDisplay">198.18.1.1</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Password</span>
+                <span class="info-value" id="passwordDisplay">password</span>
+            </div>
+        </div>
+    </div>
 
-    <body>
-        <div class="main-cont">
-            <div class="tab-cont cont round-top"><br><br></div>
+    <!-- Content Sections -->
+    <div class="content-section">
+        <div class="mods-container">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-button active" data-tab="join">How to Join</button>
+                <button class="tab-button" data-tab="mods">Server Mods</button>
+            </div>
 
-            <div class="body-cont cont round-bottom" style="margin-top:-1px">
-                <div style="width: 85%; margin: auto;">
-                    <center>
-                        <h2><b>We Do A Little Fabric (AOF5 1.3.1)</b></h2>
-                        <h4>1.18.2 Fabric Modpack</h4>
-                        <br><br><br>
+            <!-- How to Join Tab -->
+            <div id="join" class="tab-content active">
+                <!-- Instructions -->
+                <div class="instructions-box">
+                    <ol class="instructions-list">
+                        <li>
+                            <span class="instruction-title">Open Vintage Story</span>
+                            <span class="instruction-text">Launch the game and select the <strong>Multiplayer</strong> option from the main menu.</span>
+                        </li>
+                        <li>
+                            <span class="instruction-title">Add New Server</span>
+                            <span class="instruction-text">Click the <strong>Add New Server</strong> button in the bottom right-hand corner.</span>
+                        </li>
+                        <li>
+                            <span class="instruction-title">Enter Server Details</span>
+                            <span class="instruction-text">Fill out the following information:
+                                <div class="detail-list">
+                                    <div class="detail-item"><strong>Server Name:</strong> Dusk Server (or any name you prefer)</div>
+                                    <div class="detail-item"><strong>Server IP:</strong> <span id="ipInstructions">198.18.1.1</span></div>
+                                    <div class="detail-item"><strong>Password:</strong> <span id="passwordInstructions">password</span></div>
+                                </div>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="instruction-title">Create Server Entry</span>
+                            <span class="instruction-text">Click the <strong>Create</strong> button to add the server.</span>
+                        </li>
+                        <li>
+                            <span class="instruction-title">Connect</span>
+                            <span class="instruction-text">Select the Dusk Server from your server list and click <strong>Connect</strong> to join!</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
 
-                        <h3><b>Installation Instructions</b></h3>
-                    </center>
-                    <hr>
-                    <br>
-
-                    <div class="info-cont cont row" style="margin: auto;">
-                        <div class="col">
-                            <h5><b>WDALF + SHADERS (AOF 1.3.1)</b></h5>
-                            <h6>Size: 13.70</h6>
-                            <a class="btn btn-primary" style="margin-bottom: 50px" href="./files/We Do A Little Fabric - AOF5 - 1.18.2-1.3.1.zip" target="_blank">
-                                Download
-                                <img class="sidebar-icon" src="./css/icons/arrow-bar-down.svg" style="-webkit-filter: invert(1);">
-                            </a>
-
-                            <h5><b>Curseforge Installer</b></h5>
-                            <h6>Size: 1.44MB</h6>
-                            <a class="btn btn-primary" href="https://download.overwolf.com/installer/prod/20f982907dc9938a92dea22604da152d/CurseForge%20-%20Installer.exe" target="_blank">
-                                Download
-                                <img class="sidebar-icon" src="./css/icons/arrow-bar-down.svg" style="-webkit-filter: invert(1);">
-                            </a>
-                        </div>
-                        
-                        <div class="col">
-                            <h5><b>Instructions</b></h5>
-                            <p>
-                                1. Download both the Curseforge installer and the modpack profile.
-                                <br><br>
-
-                                2. Install the Curseforge client. Once done, select the Minecraft icon/selection. Run through the installation steps.
-                                <br><br>
-
-                                3. Press the "Create Custom Profile" option at the top right of the screen. Click the <u>import</u> link.
-                                <br><br>
-
-                                4. Select the modpack profile (.zip) you downloaded when met with the file explorer window.
-                                Once selected, click the "Create" button.
-                                <br><br>
-
-                                5. You can connect to the server using <u>wedoalittlefabric.ddns.net</u>.
-                                <br>
-                                <span style="color:red">
-                                    <b>Please Note: </b> If you have a mod or version mismatch when attempting to connect, please
-                                    make sure you have the most up to date version of the pack!
-                                </span>
-                            </p>
-                        </div>
-                    </div>
+            <!-- Server Mods Tab -->
+            <div id="mods" class="tab-content">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search mods...">
                 </div>
 
-                <div style="width: 75%; margin: 100px auto 0 auto;">
-                    <center>
-                        <h3><b>Mod List</b></h3>
-                    </center>
-                    <hr>
-                    <br>
-                </div>
+                <!-- Mods List -->
+                <div id="modsList"></div>
 
-                <div class="list-cont row">
-                    <div class="list-item col">
-                        <ul class="list-unstyled">
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Additionaladditions 4.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Adorn 3.5.0+1.18.2 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Advancementplaques 1.18.2 Fabric 1.4.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Advdebug 2.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Adventurez 1.4.11</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ae2Things 1.1.0 Beta.7</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ae2Wtlib 11.1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Animalfeedingtrough 1.0.3+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Aofemotes 0.0.4+1.18.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Appleskin Fabric Mc1.18.2 2.4.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Applied Botanics 1.2.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Appliedenergistics2 11.1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Arcanus 1.29</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Architects Palette Fabric 2.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Architectury 4.5.76 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Arrp 0.5.7</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Artifacts 7.0.3+Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Attributefix Fabric 1.18.2 14.0.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Authme Mc1.18.2 3.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Auto Workstations 1.0 Snapshot 12</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Autoconfig1U 3.4.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Axolotl Item Fix 1.1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Badpackets Fabric 0.1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Balm Fabric 3.1.0+0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Basicaiots 1.3.3+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Beaconoverhaul 1.6.0+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Betterbadomen 1.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bettercompatibilitychecker Fabric 1.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bettermounthud 1.1.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Betterpingdisplay Fabric 1.18.2 1.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bewitchment 1.18 22</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bhmenu 1.17.1 1.18.2 1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Biomemakeover Fabric 1.18.2 1.4.26</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bitsandchisels 2.6.13</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Blast 1.9.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Blockus 2.4.7+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bomd 1.3.7 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bookshelf Fabric 1.18.2 13.2.21</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Botania 1.18.2 434 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Bowinfinityfix 1.18.X Fabric Rv11</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Breakprogress 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Builtin Servers 1.0.1 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cammies Minecart Tweaks 1.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Campanion 3.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Camsbackpacks 2.11</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Can I Mine This Block 1.2.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Capybara 1.18.2 1.0.6</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Caracal 1.18.2 1.3.8</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Carrier 1.10.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Catwalks Inc 1.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cc Restitched 1.100.8</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Chalk 2.0.1+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cherishedworlds Fabric 2.0.2 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Chimes 1.1.1 1.18.2+[Fabric]</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Chisel 1.4.5+1.18.X</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Chunky 1.2.164</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cleancut 1.18.2 5.0 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Clienttweaks Fabric 1.18.1 7.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cloth Api 3.2.64</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Clumps Fabric 1.18.2 8.0.0+10</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Companion 1.18.2 Fabric 2.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Conjuring 1.0.22+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Continuity 2.0.0+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Controlling Fabric 1.18.2 9.0+20</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Couplings 1.8.1+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Coxinhautilities 1.3+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Craftingtweaks Fabric 1.18.2 14.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Crawl 0.10.6</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Create Mc1.18.2V0.4.1+637</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Createplus 1.0.0 Beta4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Creeperoverhaul 1.18.2 1.3.1 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Croptopia 1.18.2 Fabric 2.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Croptopia Chocolaterie 1.2 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Cyti 1.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dankstorage 1.18.2 3.7</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dark Enchanting 1.0.0+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Darkpaintings Fabric 1.18.2 10.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Darkutilities Fabric 1.18.2 10.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dawn 3.3.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Deathlog 0.2.9+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Decorative Blocks Fabric 1.18.2 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Deepmoblearning Refabricated 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Deepslatecutting 1.18.2 1.3.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Defaultoptions Fabric 1.18.2 14.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Disablecustomworldsadvice 2.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Display Case Fabric 1.18.2 1.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dragonloot 1.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dualriders 1.18.2 1.1.1 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Duckling 1.0.5 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dusk Fabric 1.18.2 2.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dustrial Decor Fabric 0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dwarfcoal 1.18.1 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dyed Fabric 1.18.2 1.0.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Dynamic Fps 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ecologics Fabric 1.18.2 1.7.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Effecttooltips Fabric 1.18.2 2.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Eggtab 2.2.1+1.18 Fabric</li>
-                        </ul>
-                    </div>
-                    <div class="list-item col">
-                        <ul class="list-unstyled">
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ellemes Container Library 1.4.0 Beta.2+1.18.2 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Elytratrinket Fabric 3.0.0 1.18.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Enchancement 1.18 18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Enchantmentdescriptions Fabric 1.18.2 10.0.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Entity Banners 1.0.2 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Equipmentcompare 1.18.2 Fabric 1.2.12</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Expandedstorage 7.4.0 Beta.4+1.18.2 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Extra Generators 1.2.1 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Extraalchemy Fabric 1.18.2 1.8.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Extremesoundmuffler 3.27Fabric 1.18.X</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Fabric Api 0.57.0+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Fabric Api 0.58.0+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Fabric Experiencebugfix 1.18 18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Fabric Language Kotlin 1.8.1+Kotlin.1.7.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Farmers Delight Fabric 0.2.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Farmingforblockheads Fabric 1.18.2 10.0.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Featurenbtdeadlockbegonefabric 2.0.0+1.18.2 Rc1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ferritecore 4.2.1 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Findme 3.0.6 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Floral Flair 1.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Flytrelib 1.18.2 1.8.1 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Forgeconfigapiport V3.2.0 1.18.2 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ftb Chunks Fabric 1802.3.6 Build.147</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ftb Library Fabric 1802.3.6 Build.123</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ftb Quests Fabric 1802.3.8 Build.101</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ftb Teams Fabric 1802.2.6 Build.51</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ftb Ultimine Fabric 1802.3.3 Build.55</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Gate Of Babylon 1.7.0 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Geckolib Fabric 1.18 3.0.50</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Glassential Fabric 1.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Go Fish 1.5.0 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Goblin Traders 1.5.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Goldenhoppers 1.3.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Goodall 1.0.2 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Grizzlybear 1.18 1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Guard Villagers Fabric 1.18.2 1.0.14</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Guild Fabric 0.4.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Healthoverlay 1.18.2 6.2.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Hwyla Addon Horseinfo 0.4.1 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Iceberg 1.18.2 Fabric 1.0.38</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Iknowwhatimdoing 4.1.0 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Impaled 1.1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Improved Stations 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Incantationem 1.1.3+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Indium 1.0.6+Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Indrev 1.14.0 Beta</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Infusion Table Mod 1.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Inmis 2.6.0 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Inventoryhud Fabric [1.18] 3.4.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Inventorysorter 1.8.8 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Iris Mc1.18.2 1.2.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Iron Jetpacks 0.4.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Item Filters Fabric 1802.2.7 Build.21</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Jam Lib 0.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Jumpoverfences 1.16 0.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Kibe 1.9.8 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Kjsextras 3.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Kleeslabs Fabric 1.18.2 11.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Kubejs Create Fabric 1802.2.2 Build.26</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Kubejs Fabric 1802.5.4 Build.508</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Lazydfu 0.1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Legendarytooltips 1.18.2 Fabric 1.2.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Lifts 1.4.1 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Light Overlay 6.0.5</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Lithium Fabric Mc1.18.2 0.7.10</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Logprot Fabric 1.18 1.6</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Lootr 1.18.2 0.3.20.57</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Lovelysnails 1.0.4+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Magicalforest Fabric 1.18.2 2.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Magitekmechs Fabric Mc1.18 1.0.12</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Bridges 2.0.3Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Doors 1.0.6Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Fences 1.0.5Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Lights 1.0.3C Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Paintings 1.0.3Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Paths 1.0.0Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Roofs 2.1.2Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Trapdoors 1.0.6Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mcw Windows 2.0.3Bfabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Megane 7.7.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mobscarecrow 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mocolors 1.4.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Modern Dynamics 0.2.3 Beta</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Modern Industrialization 1.2.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Modmenu 3.2.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> More Geodes 1.4.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Morevillagers Fabric 1.18.2 3.3.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mostructures 1.4.2+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Mythic Mounts 1.18.2 7.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Naturescompass 1.18.2 2.0.3 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Nears Fabric 1.18 1.1.8</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Netherportalfix Fabric 1.18 9.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Noangledbrackets 1.18.2 1.0.0 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Nonullprocessorsfabric 2.0.1+1.18.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Ohthebiomesyou'Llgo Fabric 1.18.2 1.4.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Onastick Fabric 2.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Openloader Fabric 1.18.2 12.0.1</li>
-                        </ul>
-                    </div>
-                    <div class="list-item col">
-                        <ul class="list-unstyled">
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Overloadedarmorbar 1.18.1 6</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Overweightfarming 1.18.2 1.5.3 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Owo Lib 0.7.2 No Cme+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Paginatedadvancements 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Pehkui 3.3.3+1.14.4 1.19.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Peripheralium 0.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Peripheralworks 0.1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Phosphor Fabric Mc1.18.X 0.8.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Pigpen Fabric 1.18.2 8.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Pling 1.5.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Plushie Mod 1.2 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Probablychests 0.4.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Promenade 2.6.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Pyrotastic 1.18.2+0.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Questsadditions Fabric 1.18.2 1.3.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Quickshulker 1.3.6 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Raised Fabric 1.18.2 1.1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Rare Ice 0.4.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Reborncore 5.2.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Redstone Bits 1.8.2+Fabric Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Replanter Fabric 1.18.2 1.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Repurposedstructuresfabric 4.1.14+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Rer 2.5.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Respawnablepets 1.18 4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Rhino Fabric 1802.1.14 Build.190</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Rightclickharvest 2.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Roughlyenoughitems 8.3.501</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Roughlyenoughprofessions Fabric 1.18.2 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Runelic Fabric 1.18.2 11.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Secretrooms 1.3.1+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Showmewhatyougot 1.18 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Shulkerboxtooltip 3.0.10+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Simpleteleporters 2.3.0+Fabric Mc1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Simplevoidworld 6.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Simulacrum 0.5.4 Beta</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Slight Gui Modifications 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Slimyfloor 1.18 1.2.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Slotlock 1.0.4 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Smootherbedrock 1.0.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Sodium Fabric Mc1.18.2 0.4.1+Build.15</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Someforgepatchesported 1.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Spark 1.9.11 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Spectrum 1.4.2 1.18.2 Chaosandexploration</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Sprout 1.3.1 Fabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Staffofbuilding 1.4.1 1.18.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Stoneholm 1.4.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Strawdummy 1.7.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Structure Tools 1.0.22</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Techreborn 5.2.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Terrablender Fabric 1.18.2 1.1.0.102</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Terrarian Slimes 1.2.1 Beta+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Thatched Fabric 1.18.2 1.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Thegraveyard1.9(Fabric)For1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Thegraveyardbiomes1.1(Fabric)For1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Thonkutil 2.14.1+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Timeoutout 1.0.1+1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Tips Fabric 1.18.2 5.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Toolstats Fabric 1.18.2 9.0.3</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Tooltipfix 1.0.4 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Totwadditions 1.2.1 1.18.2 Fabric Polymer</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Transportables 1.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Trapexpansion 1.3.3+Fabric Mc1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Trashslot Fabric 1.18.1 11.0.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Trinketofundying Fabric 2.0.1 1.18</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Trinkets 3.3.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Twigs Fabric 1.1.3 Patch2+1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Twilightforest Fabric 1.18.2 4.1.251</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Updatefixerupper 1.0.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Vanilla Hammers 3.4.0 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Vanillaexcavators 2.3.1 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Villager Hats 1.4.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Visuality 0.4.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Voidtotem Fabric 1.18.2 1.3.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Waystones Fabric 1.18.2 10.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wirelessnetworks 1.5.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wither Totems Mod 0.3.5 1.18.2 Pre2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wmitaf Fabric Mc1.18.1 2.3.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wolves With Armor 1.7.1 1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wraith Croptosis 1.5.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wraith Fabricaeexnihilo 0.1.6+Mc1.18.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wraith Harvestscythes 2.5.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wraith Waystones 2.5.4</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Wthit Fabric 4.11.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Xlpackets 2.1 1.17.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Xpobelisk 0.4.1.Rfor1.18.Xfabric</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Youre In Grave Danger 1.3.7</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsapi 1.18.2 Fabric 2.0.8</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbetterdeserttemples 1.18.2 Fabric 1.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbetterdungeons 1.18.2 Fabric 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbettermineshafts 1.18.2 Fabric 2.2</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbetterstrongholds 1.18.2 Fabric 2.1.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbetterwitchhuts 1.18.2 Fabric 1.0.1</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsbridges 1.18.2 Fabric 2.1.0</li>
-                            <li><img class="sidebar-icon" src="./css/icons/caret-right-fill.svg"> Yungsextras 1.18.2 Fabric 2.1.0</li>
-                        </ul>
-                    </div>                                                        
+                <!-- No Results Message -->
+                <div id="noResults" class="no-results" style="display: none;">
+                    No mods found matching your search.
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2026 Dusk Server. All rights probably reserved.</p>
+        <a href="https://www.vintagestory.at" target="_blank" class="footer-link footer-button">Visit Vintage Story</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Server Configuration Constants
+        const SERVER_IP = "vs.unewt.com:42420";
+        const SERVER_PASSWORD = "dusk";
+
+        // Mod data extracted from modList.csv
+        const modsData = [
+            { name: "A Culinary Artillery", link: "https://mods.vintagestory.at/aculinaryartillery", notes: "---" },
+            { name: "Abundant Stone Paths", link: "https://mods.vintagestory.at/abundantstonepaths", notes: "---" },
+            { name: "Accessibility Tweaks", link: "https://mods.vintagestory.at/accessibilitytweaks", notes: "---" },
+            { name: "Adventurer's Walking Stick", link: "https://mods.vintagestory.at/show/mod/34545", notes: "---" },
+            { name: "Air Boat", link: "https://mods.vintagestory.at/show/mod/34819", notes: "---" },
+            { name: "Attribute Rendering Library", link: "https://mods.vintagestory.at/attributerenderinglibrary", notes: "---" },
+            { name: "Better Loot", link: "https://mods.vintagestory.at/betterloot", notes: "Newt" },
+            { name: "Billposting", link: "https://mods.vintagestory.at/billposting", notes: "---" },
+            { name: "Blackguard Additions", link: "https://mods.vintagestory.at/show/mod/22373", notes: "Newt" },
+            { name: "Blackguard Resurrected", link: "https://mods.vintagestory.at/show/mod/20540", notes: "Newt" },
+            { name: "Blacksmith Name", link: "https://mods.vintagestory.at/show/mod/1910", notes: "---" },
+            { name: "Boat Tags", link: "https://mods.vintagestory.at/boattags", notes: "---" },
+            { name: "Braziers", link: "https://mods.vintagestory.at/braziers", notes: "---" },
+            { name: "Butterfly Displays", link: "https://mods.vintagestory.at/butterflydisplays", notes: "---" },
+            { name: "CAN Claims", link: "https://mods.vintagestory.at/canclaims", notes: "---" },
+            { name: "CAN Crops", link: "https://mods.vintagestory.at/cancrops", notes: "---" },
+            { name: "CAN Mailboxes", link: "https://mods.vintagestory.at/canmailbox", notes: "---" },
+            { name: "Canoe Mod 1.21", link: "https://mods.vintagestory.at/canoemode", notes: "---" },
+            { name: "Canoe Mod: Circuit's Patch", link: "https://mods.vintagestory.at/canoemodcircuitspatch", notes: "---" },
+            { name: "Carry On", link: "https://mods.vintagestory.at/carryon", notes: "---" },
+            { name: "Cartwright's Caravan", link: "https://mods.vintagestory.at/cartwrightscaravan", notes: "---" },
+            { name: "Charlotte's Clothes", link: "https://mods.vintagestory.at/charlottesclothes", notes: "---" },
+            { name: "Chiseled Block Retention", link: "https://mods.vintagestory.at/cbr", notes: "---" },
+            { name: "Clothier's Heirlooms", link: "https://mods.vintagestory.at/clothiersheirlooms", notes: "---" },
+            { name: "Coinage", link: "https://mods.vintagestory.at/coinage", notes: "---" },
+            { name: "Colorful Vanilla Clothing", link: "https://mods.vintagestory.at/colorfulclothing", notes: "---" },
+            { name: "Custom Flowerpots", link: "https://mods.vintagestory.at/customflowerpots", notes: "---" },
+            { name: "Debark", link: "https://mods.vintagestory.at/show/mod/21434", notes: "---" },
+            { name: "Door Variants", link: "https://mods.vintagestory.at/doorvariants", notes: "---" },
+            { name: "Dressed to Kill: REDUX", link: "https://mods.vintagestory.at/dressedtokillredux", notes: "---" },
+            { name: "Dressmakers", link: "https://mods.vintagestory.at/dressmakers", notes: "---" },
+            { name: "Envelopes", link: "https://mods.vintagestory.at/envelopes", notes: "---" },
+            { name: "Expanded Foods", link: "https://mods.vintagestory.at/expandedfoods", notes: "---" },
+            { name: "Extra Info", link: "https://mods.vintagestory.at/extrainfo", notes: "---" },
+            { name: "Fauna of the Stone Age: Chelonioidea", link: "https://mods.vintagestory.at/chelonioidea", notes: "---" },
+            { name: "Fauna of the Stone Age: Iniidae Plus", link: "https://mods.vintagestory.at/iniidae", notes: "---" },
+            { name: "Fauna of the Stone Age: Sirenia", link: "https://mods.vintagestory.at/sirenia", notes: "Newt" },
+            { name: "Fauna of the Stone Age: Spheniscidae", link: "https://mods.vintagestory.at/spheniscidae", notes: "---" },
+            { name: "Female Seraph", link: "https://mods.vintagestory.at/femaleseraph", notes: "---" },
+            { name: "Firewood and Boards from Debarked Logs", link: "https://mods.vintagestory.at/firewoodandboardsfromdebarkedlogs", notes: "---" },
+            { name: "Fishing", link: "https://mods.vintagestory.at/fishing", notes: "---" },
+            { name: "Food Shelves", link: "https://mods.vintagestory.at/foodshelves", notes: "---" },
+            { name: "Footprints", link: "https://mods.vintagestory.at/footprints", notes: "---" },
+            { name: "Fueled Wearable Lights", link: "https://mods.vintagestory.at/fueledwearablelights", notes: "---" },
+            { name: "FWD Deco", link: "https://mods.vintagestory.at/winterswallpaper", notes: "---" },
+            { name: "Gildening Tools", link: "https://mods.vintagestory.at/gildeningtools", notes: "---" },
+            { name: "Gimme One Seed Plz (?)", link: "https://mods.vintagestory.at/gimmeoneseedplz", notes: "---" },
+            { name: "Glass Doors", link: "https://mods.vintagestory.at/glassdoors", notes: "---" },
+            { name: "Glass Trapdoors", link: "https://mods.vintagestory.at/glasstrapdoors", notes: "---" },
+            { name: "GlooMe Classes", link: "https://mods.vintagestory.at/gloomeclasses", notes: "---" },
+            { name: "Hanging Oil Lamps", link: "https://mods.vintagestory.at/hangingoillamps", notes: "---" },
+            { name: "Healing Springs", link: "https://mods.vintagestory.at/healingsprings", notes: "---" },
+            { name: "HealOthers", link: "https://mods.vintagestory.at/show/mod/25768", notes: "---" },
+            { name: "Hobo's Flower Circlets", link: "https://mods.vintagestory.at/hobosflowercirclets", notes: "---" },
+            { name: "Instruments", link: "https://mods.vintagestory.at/show/mod/463", notes: "---" },
+            { name: "Instruments Covertpack", link: "https://mods.vintagestory.at/instrumentscovertpack", notes: "---" },
+            { name: "Just Chairs", link: "https://mods.vintagestory.at/show/mod/14066", notes: "---" },
+            { name: "Kevin's Furniture", link: "https://mods.vintagestory.at/kevinsfurniture", notes: "---" },
+            { name: "Kobold Player Model Redux", link: "https://mods.vintagestory.at/koboldrdx", notes: "---" },
+            { name: "Liquid Containers", link: "https://mods.vintagestory.at/liquidcontainers", notes: "---" },
+            { name: "Make Tea Forked", link: "https://mods.vintagestory.at/maketeaforked", notes: "---" },
+            { name: "Material Needs", link: "https://mods.vintagestory.at/materialneeds", notes: "---" },
+            { name: "Mechanical Block Retention", link: "https://mods.vintagestory.at/mbr", notes: "---" },
+            { name: "More Beams", link: "https://mods.vintagestory.at/morebeams", notes: "---" },
+            { name: "Mud", link: "https://mods.vintagestory.at/show/mod/36070", notes: "---" },
+            { name: "Mulching", link: "https://mods.vintagestory.at/show/mod/34989", notes: "---" },
+            { name: "NDL ExpandedGrowth (Flower Growth Module)", link: "https://mods.vintagestory.at/ndlexpandedgrowthflowers", notes: "---" },
+            { name: "NDL ExpandedGrowth (Mushroom Growth Module)", link: "https://mods.vintagestory.at/ndlexpandedgrowthmushrooms", notes: "---" },
+            { name: "Notes", link: "https://mods.vintagestory.at/pomnotes", notes: "---" },
+            { name: "Notice Board", link: "https://mods.vintagestory.at/noticeboard", notes: "---" },
+            { name: "Pencil", link: "https://mods.vintagestory.at/show/mod/32159", notes: "---" },
+            { name: "Pipeleaf", link: "https://mods.vintagestory.at/pipeleaf", notes: "---" },
+            { name: "Place on slabs", link: "https://mods.vintagestory.at/show/mod/38090", notes: "---" },
+            { name: "Player Model Lib", link: "https://mods.vintagestory.at/playermodellib", notes: "---" },
+            { name: "PlayerCorpse", link: "https://mods.vintagestory.at/playercorpse", notes: "---" },
+            { name: "PlayerList", link: "https://mods.vintagestory.at/playerlist", notes: "---" },
+            { name: "Prospect Together", link: "https://mods.vintagestory.at/prospecttogether", notes: "---" },
+            { name: "Purposeful Storage", link: "https://mods.vintagestory.at/purposefulstorage", notes: "---" },
+            { name: "QP's Chisel Tools", link: "https://mods.vintagestory.at/chiseltools", notes: "---" },
+            { name: "Racial Equality (Visual)", link: "https://mods.vintagestory.at/racialequality", notes: "---" },
+            { name: "Real Smoke", link: "https://mods.vintagestory.at/realsmoke", notes: "Newt" },
+            { name: "Regalia", link: "https://mods.vintagestory.at/regalia", notes: "---" },
+            { name: "RP Voice Chat", link: "https://mods.vintagestory.at/rpvoicechat", notes: "---" },
+            { name: "Saddle Blanket Beds", link: "https://mods.vintagestory.at/show/mod/20437", notes: "---" },
+            { name: "Salty's Catch Livestock", link: "https://mods.vintagestory.at/catchlivestock", notes: "---" },
+            { name: "Salty's Cave Painting", link: "https://mods.vintagestory.at/cavepainting", notes: "---" },
+            { name: "Salty's Hand to Hand", link: "https://mods.vintagestory.at/handtohand", notes: "---" },
+            { name: "Salty's Immersive: Lanterns", link: "https://mods.vintagestory.at/immersivelanterns", notes: "---" },
+            { name: "Salty's Manual: Dishes", link: "https://mods.vintagestory.at/manualdishes", notes: "---" },
+            { name: "Salty's Manual: Dough", link: "https://mods.vintagestory.at/manualdough", notes: "---" },
+            { name: "Salty's Stone Harvesting", link: "https://mods.vintagestory.at/stoneharvesting", notes: "---" },
+            { name: "Salty's TrashBin ed", link: "https://mods.vintagestory.at/trashbinned", notes: "---" },
+            { name: "Scaffolding", link: "https://mods.vintagestory.at/scafolding", notes: "---" },
+            { name: "Shelf Obsessed", link: "https://mods.vintagestory.at/shelfobsessed", notes: "---" },
+            { name: "SimpleCloth", link: "https://mods.vintagestory.at/simplecloth", notes: "---" },
+            { name: "Skeletons", link: "https://mods.vintagestory.at/skeletons", notes: "---" },
+            { name: "SlowTox", link: "https://mods.vintagestory.at/slowtox", notes: "---" },
+            { name: "Spinning Wheel", link: "https://mods.vintagestory.at/show/mod/34327", notes: "---" },
+            { name: "Spyglass", link: "https://mods.vintagestory.at/spyglass", notes: "---" },
+            { name: "Storage Urn", link: "https://mods.vintagestory.at/show/mod/29466", notes: "---" },
+            { name: "Tabletop Games", link: "https://mods.vintagestory.at/tabletopgames", notes: "---" },
+            { name: "Tailor's Delight", link: "https://mods.vintagestory.at/tailorsdelight", notes: "---" },
+            { name: "Tankards, Goblets, and More!", link: "https://mods.vintagestory.at/tankardsandgoblets", notes: "---" },
+            { name: "Temporal Transporters", link: "https://mods.vintagestory.at/temporaltransporters", notes: "---" },
+            { name: "The Balladeer: A Musical Buff Class", link: "https://mods.vintagestory.at/vsballadeerclass", notes: "---" },
+            { name: "Torch Holder Smithing Plus", link: "https://mods.vintagestory.at/show/mod/21921", notes: "---" },
+            { name: "UnCobbled", link: "https://mods.vintagestory.at/uncobbled", notes: "---" },
+            { name: "Unconscious (Revive)", link: "https://mods.vintagestory.at/unconscious", notes: "---" },
+            { name: "Unleaded Windows", link: "https://mods.vintagestory.at/apewindows", notes: "---" },
+            { name: "Upgradable Storage", link: "https://mods.vintagestory.at/upgradablestorage", notes: "---" },
+            { name: "Vaklyjra Patches: Female Seraph Clothes", link: "https://mods.vintagestory.at/show/mod/35580", notes: "---" },
+            { name: "Vaklyjra's Hairstyles", link: "https://mods.vintagestory.at/valkyrjahair", notes: "---" },
+            { name: "Vanilla Variants", link: "https://mods.vintagestory.at/vanvar", notes: "---" },
+            { name: "Vanity", link: "https://mods.vintagestory.at/vanity", notes: "---" },
+            { name: "Vies Blocks", link: "https://mods.vintagestory.at/viesblocks", notes: "---" },
+            { name: "Vinconomy - A Vintage Story Economy Mod", link: "https://mods.vintagestory.at/vinconomy", notes: "---" },
+            { name: "Vintage Bonfires", link: "https://mods.vintagestory.at/vintagebonfires", notes: "---" },
+            { name: "Visible Bags", link: "https://mods.vintagestory.at/show/mod/34456", notes: "---" },
+            { name: "Wilderlands Waymarkers", link: "https://mods.vintagestory.at/show/mod/19736", notes: "---" },
+            { name: "Wind Chimes", link: "https://mods.vintagestory.at/windchimes", notes: "---" },
+            { name: "Window Storage", link: "https://mods.vintagestory.at/windowstorage", notes: "---" },
+            { name: "Wrenchable Rooftiles", link: "https://mods.vintagestory.at/wrenchroof", notes: "---" },
+            { name: "Ye Olde Keg Revived Again", link: "https://mods.vintagestory.at/yeoldekegsrevivedagain", notes: "---" }
+        ];
+
+        // Sort mods by name
+        modsData.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Group mods by first letter
+        function groupByLetter(mods) {
+            const grouped = {};
+            mods.forEach(mod => {
+                const letter = mod.name.charAt(0).toUpperCase();
+                if (!grouped[letter]) {
+                    grouped[letter] = [];
+                }
+                grouped[letter].push(mod);
+            });
+            return grouped;
+        }
+
+        // Render the mods list
+        function renderMods(modsToRender = modsData) {
+            const modsList = document.getElementById('modsList');
+            const noResults = document.getElementById('noResults');
+
+            if (modsToRender.length === 0) {
+                modsList.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            const grouped = groupByLetter(modsToRender);
+            let html = '';
+
+            Object.keys(grouped).sort().forEach(letter => {
+                html += `<div class="alpha-section">
+                    <div class="alpha-letter">${letter}</div>
+                    <div class="mod-list">`;
+                
+                grouped[letter].forEach(mod => {
+                    html += `<div class="mod-item" data-url="${mod.link}">
+                        <a href="${mod.link}" target="_blank" class="mod-name">${mod.name}</a>
+                        <div class="mod-preview">
+                            <div class="mod-preview-loading">Loading preview...</div>
+                        </div>
+                    </div>`;
+                });
+
+                html += `</div></div>`;
+            });
+
+            modsList.innerHTML = html;
+        }
+
+        // Function to load preview for a mod
+        function loadPreview(modItem) {
+            const preview = modItem.querySelector('.mod-preview');
+            const url = modItem.getAttribute('data-url');
+            
+            // Check if preview is already loaded
+            if (preview.querySelector('.mod-preview-image')) {
+                return;
+            }
+            
+            // Use a free screenshot API (thum.io)
+            const screenshotUrl = `https://image.thum.io/get?url=${encodeURIComponent(url)}&width=300&height=180`;
+            
+            const previewHtml = `
+                <img src="${screenshotUrl}" alt="Preview" class="mod-preview-image" onerror="this.parentElement.innerHTML='<div class=\\'mod-preview-title\\'>${url.split('/').pop()}</div><div class=\\'mod-preview-loading\\'>Preview unavailable</div>'">
+                <div class="mod-preview-title">${modItem.querySelector('.mod-name').textContent}</div>
+            `;
+            
+            preview.innerHTML = previewHtml;
+        }
+
+        // Add hover listeners after rendering
+        function setupPreviewListeners() {
+            const modItems = document.querySelectorAll('.mod-item');
+            modItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    loadPreview(item);
+                });
+            });
+        }
+
+        // Filter mods based on search input
+        function filterMods(searchTerm) {
+            const filtered = modsData.filter(mod =>
+                mod.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderMods(filtered);
+            setupPreviewListeners();
+        }
+
+        // Set up search event listener
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterMods(e.target.value);
+        });
+
+        // Set up tab switching
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Populate server details from constants
+        document.getElementById('ipDisplay').textContent = SERVER_IP;
+        document.getElementById('passwordDisplay').textContent = SERVER_PASSWORD;
+        document.getElementById('ipInstructions').textContent = SERVER_IP;
+        document.getElementById('passwordInstructions').textContent = SERVER_PASSWORD;
+
+        // Initial render
+        renderMods();
+        setupPreviewListeners();
+    </script>
+</body>
 </html>
