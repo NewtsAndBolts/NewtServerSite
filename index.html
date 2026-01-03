@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dusk Server - Vintage Story</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.styles.css">
 </head>
 <body>
     <!-- Header Section -->
     <div class="header-section">
-        <h1>Dusk Server</h1>
+        <h1><i class="fas fa-chess-rook" style="margin-right: 15px;"></i>Dusk Server</h1>
         <p style="font-size: 1.2rem; margin-bottom: 30px;">Vintage Story Community Server</p>
         
         <div class="server-info-card">
             <div class="info-item">
-                <span class="info-label">Server IP</span>
+                <span class="info-label"><i class="fas fa-network-wired" style="margin-right: 8px;"></i>Server IP</span>
                 <span class="info-value" id="ipDisplay">198.18.1.1</span>
             </div>
             <div class="info-item">
-                <span class="info-label">Password</span>
+                <span class="info-label"><i class="fas fa-lock" style="margin-right: 8px;"></i>Password</span>
                 <span class="info-value" id="passwordDisplay">password</span>
             </div>
         </div>
@@ -30,8 +31,9 @@
         <div class="mods-container">
             <!-- Tab Navigation -->
             <div class="tab-nav">
-                <button class="tab-button active" data-tab="join">How to Join</button>
-                <button class="tab-button" data-tab="mods">Server Mods</button>
+                <button class="tab-button active" data-tab="join"><i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>How to Join</button>
+                <button class="tab-button" data-tab="mods"><i class="fas fa-puzzle-piece" style="margin-right: 8px;"></i>Server Mods</button>
+                <button class="tab-button" data-tab="helpful"><i class="fas fa-lightbulb" style="margin-right: 8px;"></i>Helpful Info</button>
             </div>
 
             <!-- How to Join Tab -->
@@ -82,6 +84,32 @@
                 <!-- No Results Message -->
                 <div id="noResults" class="no-results" style="display: none;">
                     No mods found matching your search.
+                </div>
+            </div>
+
+            <!-- Helpful Information Tab -->
+            <div id="helpful" class="tab-content">
+                <div class="helpful-info-box">
+                    <div class="info-section">
+                        <h3><i class="fas fa-handshake" style="margin-right: 10px;"></i>Hand to Hand Trading</h3>
+                        <p>Hold an item in your hand and press <strong>R</strong> to give it to someone nearby.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-microphone" style="margin-right: 10px;"></i>Proximity Chat</h3>
+                        <p>Press <strong>N</strong> to mute/unmute, <strong>;</strong> to open the proximity chat menu, and <strong>Shift+Tab</strong> to change voice distance.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-fire" style="margin-right: 10px;"></i>Real Smoke</h3>
+                        <p>Too much smoke from fires and torches can cause smoke inhalation damage. Make sure to build chimneys to ventilate your structures!</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-skull" style="margin-right: 10px;"></i>Player Corpse</h3>
+                        <p>When you die, you drop a corpse that you can retrieve to recover your items.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-universal-access" style="margin-right: 10px;"></i>Accessibility Hub</h3>
+                        <p>Press <strong>F8</strong> to open accessibility settings for camera movement, color correction, brightness, sound effects, step assist, text alteration, and weather effects.</p>
+                    </div>
                 </div>
             </div>
         </div>
