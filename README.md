@@ -6,7 +6,7 @@ Vintage Story Community Server
 
 - **Server IP:** vs.unewt.com:42420
 - **Password:** dusk
-- **Website:** [vs.unewt.com](https://vs.unewt.com)
+- **Website:** [unewt.com](https://unewt.com)
 
 ## How to Join
 
