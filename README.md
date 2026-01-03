@@ -25,7 +25,7 @@ The server includes various mods to enhance gameplay. Visit the website for a co
 ## Links
 
 - [Visit Vintage Story](https://www.vintagestory.at)
-- [Website](https://vs.unewt.com)
+- [Server Website](https://unewt.com)
 
 ---
 
